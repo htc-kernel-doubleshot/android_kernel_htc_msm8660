@@ -33,6 +33,7 @@
 #include "acpuclock.h"
 #include "avs.h"
 
+<<<<<<< HEAD
 #if defined(pr_debug)
 #undef pr_debug
 #endif
@@ -54,6 +55,9 @@
 			printk(KERN_ERR "[K][ACPU] "x);		\
 	} while (0)
 
+=======
+extern unsigned int max_capped;
+>>>>>>> fc8e236... board/cpufreq: add early suspend/late resume drivers
 
 /* Frequency switch modes. */
 #define SHOT_SWITCH		4
@@ -734,6 +738,9 @@ static int acpuclk_8x60_set_rate(int cpu, unsigned long rate,
 		rc = -EINVAL;
 		goto out;
 	}
+
+	if (max_capped && rate > max_capped)
+		rate = max_capped;
 
 	if (reason == SETRATE_CPUFREQ || reason == SETRATE_HOTPLUG)
 		mutex_lock(&drv_state.lock);
