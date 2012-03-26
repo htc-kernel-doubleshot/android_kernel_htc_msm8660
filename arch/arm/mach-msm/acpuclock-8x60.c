@@ -54,6 +54,8 @@
 			printk(KERN_ERR "[K][ACPU] "x);		\
 	} while (0)
 
+extern unsigned int max_capped;
+
 /* Frequency switch modes. */
 #define SHOT_SWITCH		4
 #define HOP_SWITCH		5
